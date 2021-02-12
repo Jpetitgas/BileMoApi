@@ -30,7 +30,7 @@ class AppFixtures extends Fixture
             ->setPassword($hash);
             $manager->persist($customer);
         
-        for ($u=0; $u<20; ++$u){
+        for ($u=0; $u<100; ++$u){
             $user=new User();
             $user->setFirstName($faker->firstName)
                 ->setLastName($faker->lastName)
@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
             $brand->setBrand($brands[$b]);
             $manager->persist($brand);
 
-            for ($p = 0; $p < mt_rand(5, 15); ++$p) {
+            for ($p = 0; $p < mt_rand(50, 150); ++$p) {
                 $phone = new Phone();
                 $phone->setBrand($brand)
                     ->setModel($faker->word(3))
