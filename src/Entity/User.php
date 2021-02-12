@@ -13,13 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *  subresourceOperations={
  *      "api_customers_users_get_subresource"={
- *          "normalization_context"={"groups"={"invoices_subresource"}}
+ *          "normalization_context"={"groups"={"customers_subresource"}}
  *      }
  * },
  *  attributes={
  *      "pagination_enabled"=true,
- *      "pagination_items_per_page"=5
- * }
+ *  }
  * )
  */
 class User
@@ -33,7 +32,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"invoices_subresource"})
+     * @Groups({"customers_subresource"})
      * @Assert\NotBlank(message="Le prénom de l'utilisateur est obligatoire")
      * @Assert\Length(min=3, minMessage="Le prénom doit faire plus de 3 caractères", max=255, maxMessage="Le prénom doit faire moins de 255 caractères")
      */
@@ -41,7 +40,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"invoices_subresource"})
+     * @Groups({"customers_subresource"})
      * @Assert\NotBlank(message="Le nom de l'utilisateur est obligatoire")
      * @Assert\Length(min=3, minMessage="Le prénom doit faire plus de 3 caractères", max=255, maxMessage="Le prénom doit faire moins de 255 caractères")
      */
@@ -49,7 +48,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"invoices_subresource"})
+     * @Groups({"customers_subresource"})
      * @Assert\NotBlank(message="L'adresse email est obligatoire")
      * @Assert\Email(message="Le format de l'adresse email doit être valide")
      */
@@ -112,5 +111,7 @@ class User
 
         return $this;
     }
+
+    
     
 }
