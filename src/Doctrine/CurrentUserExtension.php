@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Security;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
+use App\Entity\Customer;
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
@@ -19,9 +20,9 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryIt
         
     }
     private function addWhere(queryBuilder $queryBuilder, string $resourceClass){
-
+        
          $customer=$this->security->getUser();
-        if ($resourceClass===User::class){
+        if ($resourceClass===User::class && $customer instanceof Customer){
             $rootAlias=$queryBuilder->getRootAliases()[0];
             $queryBuilder->andWhere("$rootAlias.customer = :customer");
             $queryBuilder->setParameter("customer", $customer);
