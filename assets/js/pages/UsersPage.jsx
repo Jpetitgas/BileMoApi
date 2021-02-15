@@ -7,7 +7,7 @@ const UsersPage = props => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
 
-    const fectchUsers = async () => {
+    const fetchUsers = async () => {
         try {
             const data = await UsersAPI.findAll();
             setUsers(data);
@@ -16,7 +16,9 @@ const UsersPage = props => {
         }
     };
 
-    useEffect(() => fectchUsers(), []);
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
     const handleDelete = async id => {
         const originaleUsers = [...users];
@@ -31,9 +33,8 @@ const UsersPage = props => {
 
     const handlePageChange = page => setCurrentPage(page);
     
-    const handleSearch = event => {
-        const value = event.currentTarget.value;
-        setSearch(value);
+    const handleSearch = ({currentTarget}) => {
+        setSearch(currentTarget.value);
         setCurrentPage(1);
     }
 

@@ -2,17 +2,20 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\CustomerRepository;
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  collectionOperations={"GET"},
+ *  itemOperations={"GET"},
+ * )
  */
 class Customer implements UserInterface
 {
@@ -177,6 +180,7 @@ class Customer implements UserInterface
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->getName();
