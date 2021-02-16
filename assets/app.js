@@ -20,6 +20,7 @@ import UsersPage from './js/pages/UsersPage';
 import LoginPage from './js/pages/LoginPage';
 import AuthAPI from "./js/services/authAPI";
 import AuthContext from "./js/contexts/AuthContext";
+import UserPage from './js/pages/Userpage';
 
 AuthAPI.setup();
 const PrivateRoute = ({ path, component }) => {
@@ -48,6 +49,7 @@ const App = () => {
                 <main className="container pt-5">
                     <Switch>
                         <Route path="/login" component={LoginPage} />
+                        <PrivateRoute path="/users/:id" component={UserPage} />
                         <PrivateRoute path="/users" component={UsersPage} />
                         <Route path="/" component={HomePage} />
                     </Switch>

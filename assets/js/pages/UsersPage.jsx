@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from '../components/Pagination';
 import UsersAPI from '../services/usersAPI';
+import {Link} from "react-router-dom";
 
 const UsersPage = props => {
     const [users, setUsers] = useState([]);
@@ -50,7 +51,11 @@ const UsersPage = props => {
 
     return (
         <>
-            <h1>Listes des Users</h1>
+            <div className="mb-3 d-flex justify-content-between align-items-center">
+                <h1>Listes des Users</h1>
+                <Link to="/users/new" className="btn btn-primary">Créer un utilisateur</Link>
+            </div>
+                
             <div className="form-group">
                 <input type="text" onChange={handleSearch} value={search} className="form-control" placeholder="Rechercher..." />
             </div>
