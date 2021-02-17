@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Pagination from '../components/Pagination';
 import UsersAPI from '../services/usersAPI';
 import {Link} from "react-router-dom";
+import { toast } from "react-toastify"; 
+import TableLoader from '../components/loaders/TableLoader';
 
 const UsersPage = props => {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
+    const [loading,setLoading]= useState(true);
 
     const fetchUsers = async () => {
         try {
             const data = await UsersAPI.findAll();
             setUsers(data);
+            setLoading(false);
         } catch (error) {
             console.log(error.reponse);
+            toast.error("impossible de charger les utilisateur");
         }
     };
 
@@ -24,11 +29,12 @@ const UsersPage = props => {
     const handleDelete = async id => {
         const originaleUsers = [...users];
         setUsers(users.filter(user => user.id !== id));
-
+        toast.success("L'utilisateur a ete supprimé");
         try {
             await UsersAPI.delete(id);
         } catch (error) {
             setUsers(originaleUsers);
+            toast.error("La suppression n'a pas été faite");
         }
     };
 
@@ -68,10 +74,14 @@ const UsersPage = props => {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                {!loading && <tbody>
                     {paginatedUsers.map(user =>
                         <tr key={user.id}>
-                            <td>{user.firstName}</td>
+                            <td>
+                                <Link to={"/users/"+user.id}>
+                                    {user.firstName}
+                                </Link>
+                                </td>
                             <td>{user.lastName}</td>
                             <td>{user.email}</td>
                             <td>
@@ -79,8 +89,9 @@ const UsersPage = props => {
                             </td>
                         </tr>)}
 
-                </tbody>
+                </tbody>}
             </table>
+            {loading &&<TableLoader/>}
 
             {itemsPerPage < filteredUsers.length && <Pagination
                 currentPage={currentPage}

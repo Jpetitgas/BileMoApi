@@ -21,6 +21,8 @@ import LoginPage from './js/pages/LoginPage';
 import AuthAPI from "./js/services/authAPI";
 import AuthContext from "./js/contexts/AuthContext";
 import UserPage from './js/pages/Userpage';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 AuthAPI.setup();
 const PrivateRoute = ({ path, component }) => {
@@ -55,6 +57,7 @@ const App = () => {
                     </Switch>
                 </main>
             </HashRouter>
+            <ToastContainer position={toast.POSITION.BOTTOM_LEFT}/>
         </AuthContext.Provider>
     );
 };

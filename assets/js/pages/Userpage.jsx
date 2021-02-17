@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Field from '../components/forms/Field';
-import usersAPI from '../services/usersAPI';
 import UsersAPI from '../services/usersAPI';
+import { toast } from "react-toastify";
+import FormContentLoader from '../components/loaders/formContentLoader';
 
 const UserPage = ({match, history}) => {
 
     const { id } = match.params;
-
+    const [loading, setLoading] = useState(false);
 
     const [user, setUser] = useState({
         lastName: "",
         firstName: "",
         email: ""
     });
-
-    const handleChange = ({ currentTarget }) => {
-        const { name, value } = currentTarget;
-        setUser({ ...user, [name]: value });
-    };
 
     const [errors, setErrors] = useState({
         lastName: "",
@@ -32,29 +28,39 @@ const UserPage = ({match, history}) => {
         try {
             const { firstName, lastName, email } = await UsersAPI.find(id);
             setUser({ firstName, lastName, email });
+            setLoading(false);
         } catch (error) {
+            toast.error("L'utilisateur n'a pas pu etre chargé");
             history.replace('/users');
         }
-    }
+    };
 
     useEffect(() => {
         if (id !== "new") {
+            setLoading(true);
             setEditing(true);
             fetchUsers(id);
         }
     }, [id]);
 
+    const handleChange = ({ currentTarget }) => {
+        const { name, value } = currentTarget;
+        setUser({ ...user, [name]: value });
+    };
 
     const handleSubmit = async event => {
         event.preventDefault();
         try {
+            setErrors({});
             if (editing) {
-               await usersAPI.update(id, user);                
+               await UsersAPI.update(id, user);
+                toast.success("L'utilisateur a été modifié");               
             } else {
-                await usersAPI.create(user);
+                await UsersAPI.create(user);
+                toast.success("L'utilisateur a bien été crée");
                 history.replace("/users");
             }
-            setErrors({});
+           
         } catch ({response}) {
             const {violations}= response.data;
             if (violations) {
@@ -63,16 +69,19 @@ const UserPage = ({match, history}) => {
                     apiErrors[propertyPath] = message;
                 });
                 setErrors(apiErrors);
+                toast.error("Des erreurs dans votre formulaire");
             }
         }
     };
 
     return (
         <>
+            
             {(!editing && <h1>Création d'un utilisateur</h1>) || (
                 <h1>Modification du client</h1>
             )}
-            <form onSubmit={handleSubmit}>
+            {loading && <FormContentLoader />}
+            {!loading && <form onSubmit={handleSubmit}>
                 <Field
                     name="lastName"
                     label="Nom de famille"
@@ -104,7 +113,7 @@ const UserPage = ({match, history}) => {
                         Retour à la liste
                 </Link>
                 </div>
-            </form>
+            </form>}
         </>
     );
 };

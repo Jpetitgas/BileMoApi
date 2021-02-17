@@ -17,7 +17,7 @@ function update(id, user) {
         user
     );
 }
-function create(customer) {
+function create(user) {
     return axios.post("https://127.0.0.1:8000/api/users",
         user
     );
