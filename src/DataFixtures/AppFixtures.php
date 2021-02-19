@@ -23,15 +23,22 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-        
-        
+        $admin = new Customer();
+        $hash = $this->encoder->encodePassword($admin, 'password');
+        $admin->setName('admin')
+            ->setEmail('admin@api.fr')
+            ->setPassword($hash)
+            ->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
+
         $customers = ['BileMo', 'bidul', 'tartanpion', 'machin'];
         for ($c = 0; $c < 4; ++$c) {
             $customer = new Customer();
             $hash = $this->encoder->encodePassword($customer, 'password');
             $customer->setName($customers[$c])
             ->setEmail($faker->email)
-            ->setPassword($hash);
+            ->setPassword($hash)
+            ->setRoles(['ROLE_USER']);
             $manager->persist($customer);
 
             for ($u = 0; $u < 20; ++$u) {
@@ -42,24 +49,24 @@ class AppFixtures extends Fixture
                 ->setEmail($faker->email);
                 $manager->persist($user);
             }
+        }
+        $brands = ['Motorola', 'Samsung', 'Apple', 'Sony', 'Huawei'];
+        for ($b = 0; $b < 5; ++$b) {
+            $brand = new Brand();
+            $brand->setBrand($brands[$b]);
+            $manager->persist($brand);
 
-            $brands = ['Motorola', 'Samsung', 'Apple', 'Sony', 'Huawei'];
-            for ($b = 0; $b < 5; ++$b) {
-                $brand = new Brand();
-                $brand->setBrand($brands[$b]);
-                $manager->persist($brand);
-
-                for ($p = 0; $p < mt_rand(50, 150); ++$p) {
-                    $phone = new Phone();
-                    $phone->setBrand($brand)
+            for ($p = 0; $p < mt_rand(30, 50); ++$p) {
+                $phone = new Phone();
+                $phone->setBrand($brand)
                     ->setModel($faker->word(3))
                     ->setDescription($faker->sentence(15))
                     ->setCreateAt($faker->dateTimeBetween('-6 months'))
                     ->setAmount($faker->randomFloat(2, 49, 500));
-                    $manager->persist($phone);
-                }
+                $manager->persist($phone);
             }
         }
+
         $manager->flush();
     }
 }

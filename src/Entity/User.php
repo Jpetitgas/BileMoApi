@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
+ *  collectionOperations={"GET","POST"},
+ *  itemOperations={"GET", "PUT", "DELETE"},
  *  subresourceOperations={
  *      "api_customers_users_get_subresource"={
  *          "normalization_context"={"groups"={"customers_subresource"}}
@@ -42,7 +44,7 @@ class User
      * @ORM\Column(type="string", length=255)
      * @Groups({"customers_subresource"})
      * @Assert\NotBlank(message="Le nom de l'utilisateur est obligatoire")
-     * @Assert\Length(min=3, minMessage="Le prénom doit faire plus de 3 caractères", max=255, maxMessage="Le prénom doit faire moins de 255 caractères")
+     * @Assert\Length(min=3, minMessage="Le nom doit faire plus de 3 caractères", max=255, maxMessage="Le prénom doit faire moins de 255 caractères")
      */
     private $lastName;
 
