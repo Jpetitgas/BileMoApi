@@ -25,7 +25,7 @@ const LoginPage = ({ history }) => {
             await AuthAPI.authenticate(credentials);
             setError("");
             setIsAuthenticated(true);
-            toast.success("Vous etes dconnecté");
+            toast.success("Vous etes connecté");
             history.replace("/users");
         } catch (error) {
             setError("Aucun compte pour cette adresse");

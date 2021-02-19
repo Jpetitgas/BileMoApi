@@ -21,6 +21,8 @@ import LoginPage from './js/pages/LoginPage';
 import AuthAPI from "./js/services/authAPI";
 import AuthContext from "./js/contexts/AuthContext";
 import UserPage from './js/pages/Userpage';
+import PhonePage from './js/pages/Phonepage';
+import PhonesPage from './js/pages/Phonespage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -51,6 +53,8 @@ const App = () => {
                 <main className="container pt-5">
                     <Switch>
                         <Route path="/login" component={LoginPage} />
+                        <PrivateRoute path="/phones/:id" component={PhonePage} />
+                        <PrivateRoute path="/phones" component={PhonesPage} />
                         <PrivateRoute path="/users/:id" component={UserPage} />
                         <PrivateRoute path="/users" component={UsersPage} />
                         <Route path="/" component={HomePage} />

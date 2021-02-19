@@ -15,6 +15,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiResource(
  *  collectionOperations={"GET"},
  *  itemOperations={"GET"},
+ *  subresourceOperations={
+ *      "api_brand_phones_get_subresource"={
+ *          "normalization_context"={"groups"={"brands_subresource"}}
+ *      }
+ * },
  *  normalizationContext={
  *      "groups"={"phone_list"}
  * },
@@ -54,7 +59,7 @@ class Phone
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"phone_list"})
+     * 
      */
     private $description;
 
