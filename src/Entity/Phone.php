@@ -59,6 +59,7 @@ class Phone
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"phone_list"})
      * 
      */
     private $description;

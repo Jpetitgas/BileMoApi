@@ -77,13 +77,13 @@ const PhonesPage = props => {
             </table>
             {loading && <TableLoader />}
 
-            {itemsPerPage < filteredUsers.length && <Pagination
+            {itemsPerPage < filteredPhones.length && <Pagination
                 currentPage={currentPage}
                 itemsPerPage={itemsPerPage}
-                length={filteredUsers.length}
+                length={filteredPhones.length}
                 onPageChanged={handlePageChange}
             />}
         </>
     );
 };
-export default UsersPage;
+export default PhonesPage;
