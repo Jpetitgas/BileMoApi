@@ -28,6 +28,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * }
  * )
  * @ApiFilter(SearchFilter::class,properties={"model":"partial"})
+ * 
  */
 class Phone
 {

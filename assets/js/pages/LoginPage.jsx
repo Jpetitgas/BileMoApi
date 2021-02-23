@@ -26,7 +26,7 @@ const LoginPage = ({ history }) => {
             setError("");
             setIsAuthenticated(true);
             toast.success("Vous etes connecté");
-            history.replace("/users");
+            history.replace("/");
         } catch (error) {
             setError("Aucun compte pour cette adresse");
             toast.error("Une erreur est survenue");

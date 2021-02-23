@@ -46,10 +46,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/phones, roles: ROLE_USER }
+        - { path: ^/api/phones, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/users, roles: ROLE_USER }
         - { path: ^/api/customers, roles: ROLE_ADMIN }
-        - { path: ^/api/brands, roles: ROLE_USER }
+        - { path: ^/api/brands, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
