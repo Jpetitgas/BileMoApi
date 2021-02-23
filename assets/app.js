@@ -53,8 +53,8 @@ const App = () => {
                 <main className="container pt-5">
                     <Switch>
                         <Route path="/login" component={LoginPage} />
-                        <PrivateRoute path="/phones/:id" component={PhonePage} />
-                        <PrivateRoute path="/phones" component={PhonesPage} />
+                        <Route path="/phones/:id" component={PhonePage} />
+                        <Route path="/phones" component={PhonesPage} />
                         <PrivateRoute path="/users/:id" component={UserPage} />
                         <PrivateRoute path="/users" component={UsersPage} />
                         <Route path="/" component={HomePage} />
