@@ -26,17 +26,17 @@ class AppFixtures extends Fixture
         $admin = new Customer();
         $hash = $this->encoder->encodePassword($admin, 'password');
         $admin->setName('admin')
-            ->setEmail('admin@api.fr')
+            ->setEmail('admin@bilemo.com')
             ->setPassword($hash)
             ->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
 
-        $customers = ['BileMo', 'bidul', 'tartanpion', 'machin'];
+        
         for ($c = 0; $c < 4; ++$c) {
             $customer = new Customer();
             $hash = $this->encoder->encodePassword($customer, 'password');
-            $customer->setName($customers[$c])
-            ->setEmail($faker->email)
+            $customer->setName("client".$c)
+            ->setEmail("client".$c."@bilemo.com")
             ->setPassword($hash)
             ->setRoles(['ROLE_USER']);
             $manager->persist($customer);

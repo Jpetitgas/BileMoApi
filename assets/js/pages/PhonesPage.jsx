@@ -54,6 +54,7 @@ const PhonesPage = props => {
             <table className="table table-hover">
                 <thead>
                     <tr>
+                        <th>Brand</th>
                         <th>Model</th>
                         <th>desciption</th>
                         <th>amount</th>
@@ -63,6 +64,7 @@ const PhonesPage = props => {
                 {!loading && <tbody>
                     {paginatedPhones.map(phone =>
                         <tr key={phone.id}>
+                            <td>{phone.brand.brand}</td>
                             <td>
                                 <Link to={"/phones/" + phone.id}>
                                     {phone.model}

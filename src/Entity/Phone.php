@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PhoneRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -13,7 +15,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  * @ApiResource(
- *  collectionOperations={"GET"},
+ *  
+ *  collectionOperations={"GET",
+ *      "POST"={"security"="is_granted('ROLE_ADMIN')"}
+ *  },
  *  itemOperations={"GET"},
  *  subresourceOperations={
  *      "api_brand_phones_get_subresource"={
@@ -22,7 +27,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * },
  *  normalizationContext={
  *      "groups"={"phone_list"}
- * },
+ *  },
  *  attributes={
  *      "order":{"amount": "desc"}       
  * }
@@ -41,18 +46,23 @@ class Phone
     private $id;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255)
      * @Groups({"phone_list"})
      */
     private $model;
 
     /**
+     * 
+     * 
      * @ORM\Column(type="float")
      * @Groups({"phone_list"})
      */
     private $amount;
 
     /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      * @Groups({"phone_list"})
      */
