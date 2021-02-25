@@ -29,7 +29,7 @@ async function find(id) {
 }
 function update(id, user) {
     return axios
-        .put(USERS_API+ " /" + id, user)
+        .put(USERS_API+ "/" + id, user)
         .then(async response => {
             const cachedUsers= await Cache.get("users");
             const cachedUser = await Cache.get("users."+id);
