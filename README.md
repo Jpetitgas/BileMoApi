@@ -1,4 +1,5 @@
 # BileMoApi
+https://app.codacy.com/gh/Jpetitgas/BileMoApi/dashboard
 How to install the project with your own local environment (like Wampserver for to have database)
 
 Symfony 5.2
