@@ -35,4 +35,4 @@ npm run dev-server
 
 symfony server:start -d
 
-iden : client0@bielemo.com  password: password
+iden : client0@bilemo.com  password: password
