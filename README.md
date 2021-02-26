@@ -1,5 +1,7 @@
 # BileMoApi
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2c50b430cdda4c1fb9f7d86fbe0112c8)](https://app.codacy.com/gh/Jpetitgas/BileMoApi?utm_source=github.com&utm_medium=referral&utm_content=Jpetitgas/BileMoApi&utm_campaign=Badge_Grade_Settings)
+
 How to install the project with your own local environment (like Wampserver for to have database)
 
 Symfony 5.2
