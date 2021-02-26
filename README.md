@@ -18,14 +18,21 @@ API_URL
 From your terminal, go to the project directory and tape those command line :
 
 composer install
+
+php bin/console lexik:jwt:generate-keypair
+
 php bin/console doctrine:database:create
+
 php bin/console make:migration
+
 php bin/console doctrine:migrations:migrate
+
 php bin/console doctrine:fixtures:load
+
+npm install --force
+
+npm run dev-server
+
 symfony server:start -d
-iden : user2021 password: user2021
 
-composer install
-
-DATABASE_URL="mysql://root:@127.0.0.1:3306/bilemoapi?serverVersion=5.7.31"
-API_URL="'https://127.0.0.1:8000/api/'"
+iden : client0@bielemo.com  password: password
