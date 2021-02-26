@@ -2,11 +2,38 @@
 
 namespace App\Entity;
 
-use App\Repository\PhoneRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PhoneRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
+ * @ApiResource(
+ *  
+ *  collectionOperations={"GET",
+ *      "POST"={"security"="is_granted('ROLE_ADMIN')"}
+ *  },
+ *  itemOperations={"GET"},
+ *  subresourceOperations={
+ *      "api_brand_phones_get_subresource"={
+ *          "normalization_context"={"groups"={"brands_subresource"}}
+ *      }
+ * },
+ *  normalizationContext={
+ *      "groups"={"phone_list"}
+ *  },
+ *  attributes={
+ *      "order":{"amount": "desc"}       
+ * }
+ * )
+ * @ApiFilter(SearchFilter::class,properties={"model":"partial"})
+ * 
  */
 class Phone
 {
@@ -14,32 +41,44 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"phone_list"})
      */
     private $id;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255)
+     * @Groups({"phone_list"})
      */
     private $model;
 
     /**
+     * 
+     * 
      * @ORM\Column(type="float")
+     * @Groups({"phone_list"})
      */
     private $amount;
 
     /**
+     * @var \DateTime
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
+     * @Groups({"phone_list"})
      */
     private $createAt;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"phone_list"})
+     * 
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="phones")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"phone_list"})
      */
     private $brand;
 
