@@ -16,9 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  * @ApiResource(
  *  
- *  collectionOperations={"GET",
- *      "POST"={"security"="is_granted('ROLE_ADMIN')"}
- *  },
+ *  collectionOperations={"GET"},
  *  itemOperations={"GET"},
  *  subresourceOperations={
  *      "api_brand_phones_get_subresource"={
