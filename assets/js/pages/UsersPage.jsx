@@ -58,7 +58,7 @@ const UsersPage = props => {
     return (
         <>
             <div className="mb-3 d-flex justify-content-between align-items-center">
-                <h1>Listes des Users</h1>
+                <h1>Listes des utilisateurs</h1>
                 <Link to="/users/new" className="btn btn-primary">Créer un utilisateur</Link>
             </div>
                 
