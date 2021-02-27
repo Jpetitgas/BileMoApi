@@ -19,8 +19,11 @@ function invalidate(key){
     delete cache[key];
 }
 
+
+
 export default {
     set,
     get,
-    invalidate
+    invalidate,
+    
 };

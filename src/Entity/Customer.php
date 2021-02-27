@@ -44,7 +44,7 @@ class Customer implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer")
-     * @ApiSubresource
+     * 
      */
     private $users;
 

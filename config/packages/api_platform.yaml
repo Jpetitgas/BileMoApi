@@ -1,4 +1,8 @@
 api_platform:
+    title: 'BILEMO API'
+  
+    description: 'API REST pour la société BileMo, une entreprise fictive de vente de téléphone portable'
+
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:

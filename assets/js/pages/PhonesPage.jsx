@@ -35,7 +35,7 @@ const PhonesPage = props => {
 
     const itemsPerPage = 50;
     const filteredPhones = phones.filter(p =>
-        p.model.toLowerCase().includes(search.toLowerCase())        
+        p.brand.brand.toLowerCase().includes(search.toLowerCase())        
     );
     const paginatedPhones = Pagination.getData(
         filteredPhones,
@@ -54,10 +54,9 @@ const PhonesPage = props => {
             <table className="table table-hover">
                 <thead>
                     <tr>
-                        <th>Brand</th>
+                        <th>Marque</th>
                         <th>Model</th>
-                        <th>desciption</th>
-                        <th>amount</th>
+                        <th>Prix</th>
 
                     </tr>
                 </thead>
@@ -70,8 +69,8 @@ const PhonesPage = props => {
                                     {phone.model}
                                 </Link>
                             </td>
-                            <td>{phone.description}</td>
-                            <td>{phone.amount}</td>
+                            
+                            <td>{phone.amount} Eur</td>
 
                         </tr>)}
 
