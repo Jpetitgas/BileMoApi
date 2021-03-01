@@ -10,10 +10,11 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
+ * @Cache(expires="tomorrow", public=true)
  * @ApiResource(
  *  
  *  collectionOperations={
