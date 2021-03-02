@@ -61,7 +61,6 @@ class AppFixtures extends Fixture
                 $phone->setBrand($brand)
                     ->setModel($faker->word(3))
                     ->setDescription($faker->sentence(15))
-                    ->setCreateAt($faker->dateTimeBetween('-6 months'))
                     ->setAmount($faker->randomFloat(2, 49, 500));
                 $manager->persist($phone);
             }

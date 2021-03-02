@@ -9,17 +9,22 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  * @ApiResource(
  *  cacheHeaders={"max_age"=60, "shared_max_age"=120, "vary"={"Authorization", "Accept-Language"}},
  *  collectionOperations={
- *      "GET"
+ *      "GET",
+ *      "POST"={"security"="is_granted('ROLE_ADMIN')"}
  *  },
- *  itemOperations={"GET"},
+ *  itemOperations={"GET",
+ *      "PUT"={"security"="is_granted('ROLE_ADMIN')"},
+ *      "DELETE"={"security"="is_granted('ROLE_ADMIN')"}
+ *  },
  *  subresourceOperations={
  *      "api_brand_phones_get_subresource"={
  *          "normalization_context"={"groups"={"brands_subresource"}}
@@ -33,6 +38,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
  * }
  * )
  * @ApiFilter(SearchFilter::class,properties={"model":"partial"})
+ * @ApiFilter(DateFilter::class, properties={"createAt"})
  * 
  */
 class Phone
@@ -63,7 +69,7 @@ class Phone
     /**
      * @var \DateTime
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"phone_list"})
      */
     private $createAt;
@@ -81,6 +87,14 @@ class Phone
      * @Groups({"phone_list"})
      */
     private $brand;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
+     * @Groups({"phone_list"})
+     */
+    private $modifiedAt;
 
     public function getId(): ?int
     {
@@ -116,13 +130,6 @@ class Phone
         return $this->createAt;
     }
 
-    public function setCreateAt(\DateTimeInterface $createAt): self
-    {
-        $this->createAt = $createAt;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -146,4 +153,11 @@ class Phone
 
         return $this;
     }
+
+    public function getModifiedAt(): ?\DateTimeInterface
+    {
+        return $this->modifiedAt;
+    }
+
+    
 }
