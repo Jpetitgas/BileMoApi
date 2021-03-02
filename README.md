@@ -4,15 +4,17 @@
 
 How to install the project with your own local environment (like Wampserver for to have database)
 
-Symfony 5.2
+Configuration :
 
-PHP 7.4.9
+  Symfony 5.2
 
-MySQL 5.7.31
+  PHP 7.4.9
 
-api-platform 2.6
+  MySQL 5.7.31
 
-webpack-encore 1.11
+  api-platform 2.6
+
+  webpack-encore 1.11
 
 Follow each following steps :
 
@@ -22,27 +24,29 @@ git clone https://github.com/Jpetitgas/BileMoApi.git
 You need to edit the ".env" file:
 
 Setup Doctrine for DB connection.
-DATABASE_URL
-API_URL
+  DATABASE_URL,
+
+  API_URL
 
 From your terminal, go to the project directory and tape those command line :
 
-composer install
+  composer install
 
-php bin/console lexik:jwt:generate-keypair
+  php bin/console lexik:jwt:generate-keypair
 
-php bin/console doctrine:database:create
+  php bin/console doctrine:database:create
 
-php bin/console make:migration
+  php bin/console make:migration
 
-php bin/console doctrine:migrations:migrate
+  php bin/console doctrine:migrations:migrate
 
-php bin/console doctrine:fixtures:load
+  php bin/console doctrine:fixtures:load
 
-npm install --force
+  npm install --force
 
-npm run dev-server
+  npm run dev-server
 
-symfony server:start -d
+  symfony server:start -d
 
 iden : client0@bilemo.com  password: password
+
