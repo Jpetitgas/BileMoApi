@@ -5,8 +5,15 @@
 How to install the project with your own local environment (like Wampserver for to have database)
 
 Symfony 5.2
+
 PHP 7.4.9
+
 MySQL 5.7.31
+
+api-platform 2.6
+
+webpack-encore 1.11
+
 Follow each following steps :
 
 First clone this repository from your terminal in your preferred project directory:
