@@ -1,9 +1,9 @@
 {
     "devDependencies": {
-        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-react": "^7.12.13",
         "@symfony/stimulus-bridge": "^2.0.0",
-        "@symfony/webpack-encore": "^1.0.0",
-        "core-js": "^3.0.0",
+        "@symfony/webpack-encore": "^1.1.2",
+        "core-js": "^3.9.1",
         "regenerator-runtime": "^0.13.2",
         "stimulus": "^2.0.0",
         "webpack-notifier": "^1.6.0"
@@ -17,13 +17,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "dotenv": "^8.2.0",
         "jwt-decode": "^3.1.2",
-        "react": "^16.8.6",
+        "react": "^16.14.0",
         "react-content-loader": "^6.0.1",
-        "react-dom": "^16.8.6",
-        "react-router-dom": "^5.0.0",
+        "react-dom": "^16.14.0",
+        "react-router-dom": "^5.2.0",
         "react-toastify": "^7.0.3"
     }
 }

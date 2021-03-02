@@ -14,9 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
- * @Cache(expires="tomorrow", public=true)
  * @ApiResource(
- *  
+ *  cacheHeaders={"max_age"=60, "shared_max_age"=120, "vary"={"Authorization", "Accept-Language"}},
  *  collectionOperations={
  *      "GET"
  *  },
