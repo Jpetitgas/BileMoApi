@@ -14,4 +14,4 @@ api_platform:
         pagination:
             enabled: false
             client_enabled: true
-            client_items_per_page: true   
+            client_items_per_page: true
