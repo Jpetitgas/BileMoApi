@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -44,7 +43,6 @@ class Customer implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="customer")
-     * 
      */
     private $users;
 
@@ -133,6 +131,9 @@ class Customer implements UserInterface
     /**
      * @see UserInterface
      */
+    /**
+     * @return [type]
+     */
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
@@ -157,6 +158,11 @@ class Customer implements UserInterface
         return $this;
     }
 
+    /**
+     * @param User $user
+     * 
+     * @return self
+     */
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {

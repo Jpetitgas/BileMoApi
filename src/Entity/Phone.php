@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use DateTime;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\PhoneRepository;
-use Gedmo\Mapping\Annotation as Gedmo;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Repository\PhoneRepository;
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
@@ -34,12 +33,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      "groups"={"phone_list"}
  *  },
  *  attributes={
- *      "order":{"amount": "desc"}       
+ *      "order":{"amount": "desc"}
  * }
  * )
  * @ApiFilter(SearchFilter::class,properties={"model":"partial"})
  * @ApiFilter(DateFilter::class, properties={"createAt"})
- * 
  */
 class Phone
 {
@@ -52,15 +50,12 @@ class Phone
     private $id;
 
     /**
-     * 
      * @ORM\Column(type="string", length=255)
      * @Groups({"phone_list"})
      */
     private $model;
 
     /**
-     * 
-     * 
      * @ORM\Column(type="float")
      * @Groups({"phone_list"})
      */
@@ -77,7 +72,6 @@ class Phone
     /**
      * @ORM\Column(type="text")
      * @Groups({"phone_list"})
-     * 
      */
     private $description;
 
@@ -145,6 +139,4 @@ class Phone
 
         return $this;
     }
-
-        
 }

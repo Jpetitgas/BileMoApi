@@ -1,0 +1,41 @@
+{
+    "lang": "fr-FR",
+    
+    "name": "Bilemo API",
+    
+    "short_name": "Bilemo",
+    
+    "description": "API REST pour la société BileMo, une entreprise fictive de vente de téléphone portable",
+    
+    "start_url": "http://bilemoapipeje0416.odns.fr/",
+    
+    "scope": "/app/",
+    
+    "orientation": "landscape",
+   
+    "display": "fullscreen",
+    
+    "background_color": "#42a7ff",
+    
+    "theme_color": "rgb(29, 164, 14)",
+   
+    "icons": [
+        {
+            "src": "icon/lowres.webp",
+            "sizes": "48x48",
+            "type": "image/webp"
+        },
+        {
+            "src": "icon/lowres",
+            "sizes": "48x48"
+        },
+        {
+            "src": "icon/hd_hi.ico",
+            "sizes": "72x72 96x96 128x128 256x256"
+        },
+        {
+            "src": "icon/hd_hi.svg",
+            "sizes": "72x72"
+        }
+    ]
+}
