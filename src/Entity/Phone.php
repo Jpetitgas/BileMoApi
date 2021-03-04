@@ -88,14 +88,6 @@ class Phone
      */
     private $brand;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="create")
-     * @Gedmo\Timestampable(on="update")
-     * @Groups({"phone_list"})
-     */
-    private $modifiedAt;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -154,10 +146,5 @@ class Phone
         return $this;
     }
 
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->modifiedAt;
-    }
-
-    
+        
 }
