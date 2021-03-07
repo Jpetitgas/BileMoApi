@@ -17,10 +17,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *  cacheHeaders={"max_age"=60, "shared_max_age"=120, "vary"={"Authorization", "Accept-Language"}},
  *  collectionOperations={
- *      "GET",
+ *      "GET"={"security"="is_granted('ROLE_USER')"},
  *      "POST"={"security"="is_granted('ROLE_ADMIN')"}
  *  },
- *  itemOperations={"GET",
+ *  itemOperations={"GET"={"security"="is_granted('ROLE_USER')"},
  *      "PUT"={"security"="is_granted('ROLE_ADMIN')"},
  *      "DELETE"={"security"="is_granted('ROLE_ADMIN')"}
  *  },

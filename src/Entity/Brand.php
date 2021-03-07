@@ -13,8 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=BrandRepository::class)
  * @ApiResource(
- *  collectionOperations={"GET"},
- *  itemOperations={"GET"},
+ *  collectionOperations={"GET"={"security"="is_granted('ROLE_USER')"}},
+ *  itemOperations={"GET"={"security"="is_granted('ROLE_USER')"}},
  * )
  */
 class Brand
