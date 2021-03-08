@@ -33,7 +33,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      "groups"={"phone_list"}
  *  },
  *  attributes={
- *      "order":{"amount": "desc"}
+ *      "order":{"amount": "desc"},
+ *      "pagination_client_items_per_page"=true
  * }
  * )
  * @ApiFilter(SearchFilter::class,properties={"model":"partial"})

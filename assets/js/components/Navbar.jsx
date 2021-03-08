@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import AuthAPI from "../services/authAPI";
 import { NavLink } from "react-router-dom";
 import AuthContext from '../contexts/AuthContext';
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Cache from "../services/cache";
 
 const Navbar = ({ history }) => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     const handleLogout = () => {
         AuthAPI.logout();
-        
+
         setIsAuthenticated(false);
         toast.info("Vous etes déconnecté");
         history.push("/login");
@@ -24,13 +24,13 @@ const Navbar = ({ history }) => {
         <div className="collapse navbar-collapse" id="navbarColor02">
             <ul className="navbar-nav mr-auto">
                 {isAuthenticated && <>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/users">Utilisateurs</NavLink>
-                </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/users">Utilisateurs</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/phones">Phones</NavLink>
+                    </li>
                 </>}
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/phones">Phones</NavLink>
-                </li>
             </ul>
             <ul className="navbar-nav ml-auto">
                 {!isAuthenticated && <>

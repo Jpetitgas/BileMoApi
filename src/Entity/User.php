@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *  itemOperations={"GET", "PUT", "DELETE"},
  *  attributes={
  *      "pagination_enabled"=true,
+ *      "pagination_client_items_per_page"=true
  *  }
  * )
  */
